@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZUCCARO — comes true</title>
+<meta name="description" content="ZUCCARO — DOC Douro wines from Zuccaro Nobiles, Porto. Comes true, with you any moment now.">
+<meta name="theme-color" content="#060504">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZUCCARO">
+<meta property="og:title" content="ZUCCARO — comes true">
+<meta property="og:description" content="comes true · with you any moment now">
+<meta property="og:url" content="https://zuccaro.wine/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="pt_PT">
+<meta property="og:image" content="https://zuccaro.wine/assets/og-zuccaro.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zuccaro.wine/">
+<link rel="alternate" hreflang="en" href="https://zuccaro.wine/">
+<link rel="alternate" hreflang="pt" href="https://zuccaro.wine/?lang=pt">
+<link rel="alternate" hreflang="x-default" href="https://zuccaro.wine/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/dawn-b.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="/assets/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/cormorant-garamond-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  /* language before first paint: ?lang=pt -> PT, anything else -> EN */
+  (function () {
+    var pt = (new URLSearchParams(location.search).get("lang") || "").toLowerCase() === "pt";
+    document.documentElement.dataset.lang = pt ? "pt" : "en";
+    document.documentElement.lang = pt ? "pt-PT" : "en";
+  })();
+</script>
+<style>
+  /* ZUCCARO — production teaser (zuccaro.wine). Promoted from the zuccaro.win Dawn Mixer preset
+       ?p=b&f=5&s=2&c=3&b=2&l=3&e=2
+       photo   B · Miradouro do Ujo river bend, dawn from the left horizon (65deg)
+       font    Marcellus (embossed ZUCCARO) + Cormorant Garamond roman / italic (lines, UI)
+       drift   16 s medium glide: camera pull-back scale(1.16) -> 1 + lateral pan, bottle parallax
+       copy    comes true · with you any moment now · don't miss it, contact us (EN · PT)
+       bottle  single centred bottle, crisp rim highlight on the left, no mist
+       light   Antique Gold #F2C97D -> bronze umber #5C4328 -> deep night #060504
+       expo    -0.5 EV
+     Self-hosted fonts and images, no cookies, no trackers, no third-party requests. */
+  @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 300 700; font-display: swap;
+    src: url("/assets/fonts/cormorant-garamond-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 300 700; font-display: swap;
+    src: url("/assets/fonts/cormorant-garamond-italic-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Marcellus"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url("/assets/fonts/marcellus-latin.woff2") format("woff2"); }
+
+  :root {
+    /* Antique Gold light — rgb triplets so every gradient sets its own alpha */
+    --sun: 242, 201, 125;       /* sunlit gold      #F2C97D */
+    --mid: 199, 154, 87;        /* warm transition  #C79A57 */
+    --slate: 92, 67, 40;        /* bronze umber     #5C4328 */
+    --n: 6, 5, 4;               /* deep night       #060504 */
+    --haze: 140, 122, 96;       /* river mist band */
+
+    --night: rgb(var(--n));
+    --night-2: #0b0e14;
+    --champagne: #d8c29d;
+    --glint: #f3e7ce;
+    --parchment: #ece4d4;
+    --ash: #8b8d90;
+    --hair: rgba(216, 194, 157, .15);
+    --serif: "Cormorant Garamond", "Didot", "Bodoni 72", "Bodoni MT", Georgia, "Times New Roman", serif;
+    --display: "Marcellus", "Didot", "Bodoni 72", Georgia, "Times New Roman", serif;
+    --inset: clamp(12px, 2.2vw, 28px);
+    --ease: cubic-bezier(.25, .1, .25, 1);
+    --glide: cubic-bezier(.22, .52, .3, 1);          /* long camera retreat: fast start, endless settle */
+    --cam: 16s;                                       /* medium glide */
+    --track: .30em;                                   /* ZUCCARO tracking (phone: .19em) */
+    --bh: 84vh;                                       /* bottle height */
+    --sheen: linear-gradient(180deg, #FFFDF9 0%, #EFE5D2 48%, #BFA982 100%);
+    --relief: drop-shadow(0 2px 2px rgba(0, 0, 0, .95)) drop-shadow(0 10px 28px rgba(0, 0, 0, .9)) drop-shadow(0 0 42px rgba(0, 0, 0, .85));
+    --relief-0: drop-shadow(0 2px 2px rgba(0, 0, 0, 0)) drop-shadow(0 10px 28px rgba(0, 0, 0, 0)) drop-shadow(0 0 42px rgba(0, 0, 0, 0));
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; overflow: hidden; background: var(--night); color: var(--parchment);
+    font-family: var(--serif); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; text-decoration: none; transition: color .6s var(--ease); }
+  a:hover, a:focus-visible { color: var(--parchment); }
+
+  .layer { position: fixed; inset: 0; pointer-events: none; }
+  .layer > img { position: absolute; display: block; }
+  .ground { z-index: 0; background: linear-gradient(to bottom, var(--night) 0%, var(--night-2) 100%); }
+
+  /* ------------------------------------------------------------ vineyard plate + volumetric camera retreat (-0.5 EV) */
+  .plate { overflow: hidden; z-index: 0; filter: brightness(.86) contrast(1.04) saturate(1.11); }
+  .plate img {
+    inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% 60%;
+    opacity: 0; filter: brightness(0);
+    transform: scale(1.16) translate3d(2.4%, 1%, 0);
+    will-change: transform;
+    animation: emerge-p 3.4s .1s var(--ease) forwards, camera var(--cam) .1s var(--glide) forwards;
+  }
+
+  /* Antique Gold colour balance on the plate: hue/saturation of the LUT mid-tone, luminance of the photo */
+  .grade { z-index: 0; mix-blend-mode: color; background: rgb(var(--mid)); opacity: .3; }
+
+  /* ------------------------------------------------------------ night: deep darkness away from the left sunrise */
+  .night { z-index: 1; background:
+      linear-gradient(65deg, rgba(var(--n), 0) 18%, rgba(var(--n), .3) 42%, rgba(var(--n), .62) 68%, rgba(var(--n), .9) 100%),
+      linear-gradient(to bottom, rgba(var(--n), .72) 0%, rgba(var(--n), 0) 36%); }
+
+  /* ------------------------------------------------------------ optical depth of field: the shadowed right side out of focus */
+  .dof {
+    z-index: 1; --end: 37%;
+    -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px);
+    background: linear-gradient(to left, rgba(var(--n), .86) 0%, rgba(var(--n), .55) calc(var(--end) * .42), rgba(var(--n), 0) var(--end));
+    -webkit-mask-image: linear-gradient(to left, #000 0%, rgba(0, 0, 0, .85) calc(var(--end) * .4), transparent var(--end));
+            mask-image: linear-gradient(to left, #000 0%, rgba(0, 0, 0, .85) calc(var(--end) * .4), transparent var(--end));
+    opacity: 0; animation: fade 2.6s .4s var(--ease) forwards;
+  }
+
+  /* ------------------------------------------------------------ dawn from the left horizon (65deg), through the river mist */
+  .dawn { z-index: 2; mix-blend-mode: screen; opacity: 0; filter: brightness(.86);
+          animation: sunrise 4.2s 1s var(--ease) forwards; }
+  .dawn::before, .dawn::after { content: ""; position: absolute; inset: 0; }
+  .dawn::before {
+    background: linear-gradient(65deg, rgba(var(--sun), .5) 0%, rgba(var(--mid), .4) 7%, rgba(var(--mid), .24) 17%, rgba(var(--slate), .32) 29%, rgba(var(--slate), 0) 47%);
+  }
+  .dawn::after {
+    background: linear-gradient(to right, rgba(var(--sun), .4) 0%, rgba(var(--mid), .2) 9%, rgba(var(--slate), .12) 22%, rgba(var(--slate), 0) 40%),
+                linear-gradient(to bottom, rgba(var(--haze), 0) 52%, rgba(var(--haze), .1) 66%, rgba(var(--haze), 0) 80%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 24%, #000 48%, #000 70%, transparent 94%);
+            mask-image: linear-gradient(to bottom, transparent 24%, #000 48%, #000 70%, transparent 94%);
+  }
+
+  /* ------------------------------------------------------------ single bottle: body (z3) / lit left rim (z5) */
+  .bottle {
+    position: fixed; z-index: 3; left: 50%; bottom: calc(var(--inset) + 1vh); margin: 0; pointer-events: none;
+    height: var(--bh); width: auto; aspect-ratio: 527 / 1720;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, .55) 9%, #000 22%);
+            mask-image: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, .55) 9%, #000 22%);
+    opacity: 0; transform: translateX(-50%); translate: 0 1.6vh; scale: 1.025; transform-origin: 50% 100%;
+    animation: emerge-b 3.4s .9s var(--ease) forwards, settle var(--cam) .1s var(--glide) forwards;
+  }
+  .bottle.rim { z-index: 5; }
+  .bottle img, .bottle .glow, .bottle .tint { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .bottle .glow {
+    opacity: 0; filter: drop-shadow(0 0 8px rgba(var(--sun), .55));
+    animation: catch 3s 2.2s var(--ease) forwards;
+  }
+  .bottle .light { filter: grayscale(1) brightness(1.06); }
+  /* gold tint of the rim: same alpha as the rim layer, hue/saturation of the first light */
+  .bottle .tint {
+    background: rgb(var(--sun)); mix-blend-mode: color;
+    -webkit-mask: url("/assets/bottle-l-light.webp") 0 0 / 100% 100% no-repeat;
+            mask: url("/assets/bottle-l-light.webp") 0 0 / 100% 100% no-repeat;
+  }
+
+  .veil {
+    z-index: 6;
+    background:
+      radial-gradient(ellipse 125% 115% at 50% 48%, rgba(var(--n), 0) 52%, rgba(var(--n), .7) 100%),
+      linear-gradient(to bottom, rgba(var(--n), .45) 0%, rgba(var(--n), 0) 16%, rgba(var(--n), 0) 84%, rgba(var(--n), .6) 100%);
+  }
+  .grain {
+    z-index: 6; inset: -40px; opacity: .08; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 1.6s steps(4) infinite;
+  }
+
+  /* ------------------------------------------------------------ architectural frame & bars */
+  .frame {
+    position: fixed; inset: var(--inset); z-index: 7; pointer-events: none;
+    border: 1px solid var(--hair); opacity: 0; animation: fade 1.6s .2s var(--ease) forwards;
+  }
+  .bar {
+    position: fixed; left: var(--inset); right: var(--inset); z-index: 9;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem;
+    padding: 0 clamp(14px, 2.4vw, 30px); height: clamp(40px, 6vh, 54px);
+    font-size: clamp(9.5px, .74vw, 11px); letter-spacing: .32em; text-transform: uppercase; color: var(--ash);
+    font-variant-numeric: lining-nums; opacity: 0; animation: fade 1.6s .6s var(--ease) forwards;
+  }
+  .bar > :first-child { justify-self: start; }
+  .bar > :last-child { justify-self: end; }
+  .top { top: var(--inset); border-bottom: 1px solid var(--hair); }
+  .bottom { bottom: var(--inset); border-top: 1px solid var(--hair); letter-spacing: .2em; text-transform: none; font-size: clamp(10.5px, .82vw, 12.5px); }
+  .bottom a, .bottom span { white-space: nowrap; }
+  .sep { color: rgba(216, 194, 157, .45); margin: 0 .9em; }
+  .legal { color: rgba(139, 141, 144, .78); }
+
+  /* EN · PT switcher */
+  .lang { display: flex; align-items: center; margin-right: -.32em; }
+  .lang .sep { margin: 0 .6em; }
+  .lang a { padding: .5em .1em; color: rgba(139, 141, 144, .7); }
+  .lang a[aria-current="true"] { color: var(--champagne); }
+  .lang a:hover, .lang a:focus-visible { color: var(--parchment); outline: none; }
+
+  /* ------------------------------------------------------------ type */
+  main {
+    position: fixed; inset: 0; z-index: 8; display: flex; flex-direction: column; pointer-events: none;
+    align-items: center; justify-content: center; text-align: center; padding: 0 4vw 6vh;
+  }
+  /* dark scrims travel with the type, strongest right behind ZUCCARO */
+  .mark, .copy { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .mark::before, .copy::before {
+    content: ""; position: absolute; z-index: -1; pointer-events: none; opacity: 0;
+    animation: fade 2s .4s var(--ease) forwards;
+  }
+  .mark::before {
+    inset: -62% -12%;
+    background: radial-gradient(closest-side, rgba(var(--n), .84) 0%, rgba(var(--n), .66) 42%, rgba(var(--n), .3) 74%, rgba(var(--n), 0) 100%);
+  }
+  .copy::before {
+    inset: -18% -22% -30%;
+    background: radial-gradient(closest-side, rgba(var(--n), .74) 0%, rgba(var(--n), .5) 50%, rgba(var(--n), 0) 100%);
+  }
+  .copy > * { transition: opacity .22s var(--ease); }
+  .copy.swap > * { opacity: 0 !important; }
+
+  /* embossed ZUCCARO: metallic-parchment sheen clipped to the glyphs + upper specular stroke + stacked relief shadows */
+  h1 {
+    margin: 0 calc(-1 * var(--track)) 0 0; font-family: var(--display); font-weight: 400;
+    font-size: calc(clamp(56px, 9.6vw, 152px) * .9); line-height: 1.04; padding: .04em 0; letter-spacing: var(--track);
+    background: var(--sheen); -webkit-background-clip: text; background-clip: text;
+    color: transparent; -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: .012em rgba(255, 250, 240, .28);
+    opacity: 0; filter: blur(8px) var(--relief-0);
+    animation: engrave 1.8s .5s var(--ease) forwards;
+  }
+  .shadowed { text-shadow: 0 1px 3px rgba(4, 5, 7, .95), 0 0 26px rgba(4, 5, 7, .8); }
+  .rule {
+    width: 64px; height: 1px; background: var(--champagne); opacity: 0; transform: scaleX(0);
+    margin: clamp(18px, 3vh, 32px) 0 clamp(14px, 2.4vh, 26px); animation: rule 1.1s 2.5s var(--ease) forwards;
+  }
+  .slogan {
+    margin: clamp(14px, 2.2vh, 24px) 0 0; font-style: italic; font-weight: 400; line-height: 1.15; color: #ded4c0;
+    font-size: clamp(22px, 2.5vw, 38px); letter-spacing: .03em;
+    opacity: 0; animation: rise 1.4s 1.7s var(--ease) forwards;
+  }
+  .mid-line {
+    margin: 0; font-style: italic; font-weight: 400; line-height: 1.3; color: #bdb4a2;
+    font-size: clamp(16px, 1.7vw, 25px); letter-spacing: .1em;
+    opacity: 0; animation: rise 1.4s 2.9s var(--ease) forwards;
+  }
+  .cta {
+    margin: clamp(22px, 4vh, 42px) -.3em 0 0; pointer-events: auto; color: var(--champagne);
+    font-size: clamp(13px, 1.25vw, 18px); font-weight: 500; letter-spacing: .3em;
+    text-transform: uppercase; white-space: nowrap; line-height: 1.2; padding: .4em 0;
+    background: linear-gradient(currentColor, currentColor) 0 calc(100% - .1em) / 0 1px no-repeat;
+    transition: color .5s var(--ease), background-size .7s var(--ease), opacity .22s var(--ease);
+    text-shadow: 0 1px 3px rgba(4, 5, 7, .95), 0 0 22px rgba(4, 5, 7, .85);
+    opacity: 0; filter: blur(6px); transform: translate3d(0, 8px, 0);
+    animation: emerge-l 1.6s 3.9s var(--ease) forwards;     /* typography fully revealed at 5.5 s */
+  }
+  .cta:hover, .cta:focus-visible { color: var(--glint); background-size: calc(100% - .3em) 1px; outline: none; }
+
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes emerge-p { to { opacity: 1; filter: brightness(.44) saturate(.85) contrast(1.12); } }
+  @keyframes camera { to { transform: scale(1) translate3d(0, 0, 0); } }
+  @keyframes settle { to { scale: 1; } }
+  @keyframes sunrise { from { opacity: 0; transform: translate3d(0, 2.5vh, 0); } to { opacity: 1; transform: none; } }
+  @keyframes emerge-b { to { opacity: 1; translate: 0 0; } }
+  @keyframes catch { to { opacity: 1; } }
+  @keyframes engrave { to { opacity: 1; filter: blur(0) var(--relief); } }
+  @keyframes rule { to { opacity: .55; transform: scaleX(1); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes emerge-l { to { opacity: 1; filter: blur(0); transform: none; } }
+  @keyframes grain {
+    0% { transform: translate(0, 0); } 25% { transform: translate(-11px, 7px); }
+    50% { transform: translate(8px, -12px); } 75% { transform: translate(-6px, -4px); } 100% { transform: translate(0, 0); }
+  }
+
+  /* narrow desktop / tablet: keep the three-column footer on one line */
+  @media (max-width: 1240px) {
+    .bottom { letter-spacing: .1em; }
+    .bottom .sep { margin: 0 .6em; }
+  }
+  /* phone / portrait: ZUCCARO still the largest element, tracking eased so it fits the frame */
+  @media (max-width: 760px), (max-aspect-ratio: 4/5) {
+    :root { --bh: 66vh; --track: .19em; }
+    h1 { font-size: calc(min(clamp(56px, 9.6vw, 152px), 12.6vw) * .9); }
+    .mark::before { inset: -70% -8%; }
+    .copy::before { inset: -16% -10% -24%; }
+    .slogan { font-size: clamp(22px, 6vw, 28px); }
+    .mid-line { font-size: clamp(15px, 4.2vw, 18px); letter-spacing: .06em; }
+    .cta { font-size: clamp(12px, 3.3vw, 14px); letter-spacing: .22em; margin-right: -.22em; }
+    main { padding: 0 6vw 10vh; }
+    .plate img { object-position: 70% 60%; }
+    .dof { --end: 30%; }
+    .bottle { bottom: calc(var(--inset) + 92px); }
+    .bar { grid-template-columns: auto 1fr auto; letter-spacing: .22em; padding: 0 12px; }
+    .lang { margin-right: -.22em; }
+    .bottom { grid-template-columns: 1fr; justify-items: center; height: auto; padding: 10px 12px; text-align: center; line-height: 1.9; letter-spacing: .12em; }
+    .bottom > * { justify-self: center !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01s !important; animation-delay: 0s !important; }
+    .grain { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="layer ground" aria-hidden="true"></div>
+<div class="layer plate" aria-hidden="true">
+  <img src="/assets/dawn-b.jpg" alt="" width="2400" height="1350" decoding="async" fetchpriority="high">
+</div>
+<div class="layer grade" aria-hidden="true"></div>
+<div class="layer night" aria-hidden="true"></div>
+<div class="layer dof" aria-hidden="true"></div>
+<div class="layer dawn" aria-hidden="true"></div>
+
+<figure class="bottle" aria-hidden="true"><img src="/assets/bottle-l.webp" alt="" width="527" height="1720" decoding="async"></figure>
+<figure class="bottle rim" aria-hidden="true"><div class="glow"><img class="light" src="/assets/bottle-l-light.webp" alt="" width="527" height="1720" decoding="async"><span class="tint"></span></div></figure>
+
+<div class="layer veil" aria-hidden="true"></div>
+<div class="layer grain" aria-hidden="true"></div>
+<div class="frame" aria-hidden="true"></div>
+
+<header class="bar top">
+  <span>DOC Douro</span>
+  <span class="mid" aria-hidden="true"></span>
+  <nav class="lang" aria-label="Language"><a href="?lang=en" data-lang="en" hreflang="en" lang="en">EN</a><span class="sep" aria-hidden="true">·</span><a href="?lang=pt" data-lang="pt" hreflang="pt" lang="pt">PT</a></nav>
+</header>
+
+<main>
+  <div class="mark"><h1>ZUCCARO</h1></div>
+  <div class="copy" id="copy">
+    <p class="slogan shadowed" data-i18n="l1">comes true</p>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="mid-line shadowed" data-i18n="l2">with you any moment now</p>
+    <a class="cta" href="mailto:info@zuccaro.wine" data-i18n="cta">don’t miss it, contact us</a>
+  </div>
+</main>
+
+<footer class="bar bottom">
+  <span>Zuccaro Nobiles Lda · Porto</span>
+  <span class="mid"><a href="mailto:info@zuccaro.wine">info@zuccaro.wine</a><span class="sep" aria-hidden="true">·</span><a href="tel:+351227909070">+351 227 90 90 70</a></span>
+  <span><a href="https://www.instagram.com/zuccarowines/" rel="noopener" target="_blank">@zuccarowines</a><span class="sep" aria-hidden="true">·</span><a class="legal" href="/privacy.html" data-i18n="legal">Privacy &amp; Legal</a></span>
+</footer>
+
+<script>
+  /* EN · PT: swaps the copy in place (no reload) and keeps ?lang= in the URL */
+  (function () {
+    var T = {
+      en: { l1: "comes true", l2: "with you any moment now", cta: "don’t miss it, contact us", legal: "Privacy & Legal",
+            title: "ZUCCARO — comes true", lang: "en", canon: "https://zuccaro.wine/" },
+      pt: { l1: "torna-se realidade", l2: "consigo a qualquer momento", cta: "não perca, contacte-nos", legal: "Privacidade & Legal",
+            title: "ZUCCARO — torna-se realidade", lang: "pt-PT", canon: "https://zuccaro.wine/?lang=pt" }
+    };
+    var root = document.documentElement, copy = document.getElementById("copy"), timer = 0, cur = "";
+    var canon = document.querySelector('link[rel="canonical"]'), links = document.querySelectorAll(".lang a[data-lang]");
+
+    function render(l) {
+      var t = T[l];
+      document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = t[el.dataset.i18n]; });
+      cur = l; root.dataset.lang = l; root.lang = t.lang; document.title = t.title; canon.href = t.canon;
+      links.forEach(function (a) { a.setAttribute("aria-current", a.dataset.lang === l ? "true" : "false"); });
+    }
+    function choose(l) {
+      if (l === cur) return;
+      cur = l;
+      var u = new URL(location.href);
+      u.searchParams.set("lang", l);
+      history.replaceState(null, "", u.pathname + u.search + u.hash);
+      clearTimeout(timer);
+      copy.classList.add("swap");                       /* a quick crossfade of the lines only */
+      timer = setTimeout(function () { render(l); copy.classList.remove("swap"); }, 220);
+      links.forEach(function (a) { a.setAttribute("aria-current", a.dataset.lang === l ? "true" : "false"); });
+    }
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); choose(a.dataset.lang); });
+    });
+    render(root.dataset.lang === "pt" ? "pt" : "en");
+  })();
+</script>
+</body>
+</html>
